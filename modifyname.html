@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Panacea Dispensary | Modify Name</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='commoncss.css')}}">
+	<link href="https://fonts.googleapis.com/css2?family=Gotu&display=swap" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="{{url_for('static',filename='stethlogo.png')}}">
+	<style>
+		.nav{
+			width:40vw;
+		}
+		body{
+			background-image:linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),url("{{url_for('static',filename='doctorsignup.jpg')}}");
+		}
+		.btn-outline-info {
+				border-width: 1.45px;
+				background-color: white;
+			}
+			.btn {
+				font-weight: 700;
+			}
+
+	</style>
+</head>
+<body>
+	<header>
+			<div class="logo">
+				<a href="{{url_for('logout')}}"><img src="{{url_for('static',filename='stethlogo.png')}}"></a>	
+			</div>
+			<ul>
+				<li><a href="{{url_for('memberhome')}}">Member Home</a></li>
+				<li><a href="{{url_for('logout')}}">Logout</a></li>
+			</ul>
+	</header>
+	<div class=nav>
+		<div class=center><h1>PANACEA DISPENSARY</h1></div>
+		<form action="#" method="post">
+			{{ form.hidden_tag()}}
+	                <div class="form-group">
+	                    {{ form.firstname.label(class="form-control-label") }}
+	                    {% if form.firstname.errors %}
+	                        {{ form.firstname(class="form-control form-control-lg is-invalid") }}
+	                        <div class="invalid-feedback">
+	                            {% for error in form.firstname.errors %}
+	                                <span>{{ error }}</span>
+	                            {% endfor %}
+	                        </div>
+	                    {% else %}
+	                        {{ form.firstname(class="form-control form-control-lg") }}
+	                    {% endif %}
+	                </div>
+	                <div class="form-group">
+	                    {{ form.lastname.label(class="form-control-label") }}
+	                    {% if form.lastname.errors %}
+	                        {{ form.lastname(class="form-control form-control-lg is-invalid") }}
+	                        <div class="invalid-feedback">
+	                            {% for error in form.lastname.errors %}
+	                                <span>{{ error }}</span>
+	                            {% endfor %}
+	                        </div>
+	                    {% else %}
+	                        {{ form.lastname(class="form-control form-control-lg") }}
+	                    {% endif %}
+	                </div>
+	            <div class="form-group center">
+	                {{ form.submit(class="btn btn-outline-info") }}
+	            </div>
+			</form>
+	</div>
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/16.0.4/js/intlTelInput.min.js"></script>
+</body>
+</html>

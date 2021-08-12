@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Panacea Dispensary | Doctor Entry</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='commoncss.css')}}">
+	<link href="https://fonts.googleapis.com/css2?family=Gotu&display=swap" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="{{url_for('static',filename='stethlogo.png')}}">
+	<style>
+		body{
+			background-image:linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),url("{{url_for('static',filename='doctorsignup.jpg')}}");
+		}
+		table{
+			width:60vw;
+			margin:10px;
+		}
+		.days,.times,.dose{
+			width:3vw;
+			margin:1px;
+			}
+		.name{
+			width:25vw;
+			margin:0.5px;
+		}
+		.remarks{
+			width:40vw;
+			margin:0.5px;
+			margin-right:10px;
+		}
+		.nav{
+			width:65vw;
+		}
+		.remove{
+			width:5vw;
+		}
+		form{
+			width:60vw;
+		}
+		.btn-outline-info {
+				border-width: 1.45px;
+				background-color: white;
+			}
+		.btn {
+				font-weight: 700;
+			}
+	</style>
+</head>
+<body>
+	<header>
+			<div class="logo">
+				<a href="{{url_for('logout')}}"><img src="{{url_for('static',filename='stethlogo.png')}}"></a>	
+			</div>
+			<ul>
+				<li><a href="{{url_for('doctorhome')}}">Doctor Home</a></li>
+				<li><a href="{{url_for('viewhistorydoctor')}}">Patient History</a></li>
+				<li><a href="{{url_for('logout')}}">Logout</a></li>
+			</ul>
+	</header>
+	<div class=nav>
+		<div class="center"><h1>PANACEA DISPENSARY</h1></div>
+		<form action="" method="post">
+					{{ form.hidden_tag() }}
+				     	<div class="form-group">
+	                    {{ form.symptoms.label(class="form-control-label") }}
+	                    {% if form.symptoms.errors %}
+	                        {{ form.symptoms(rows="4",class="form-control form-control-lg is-invalid") }}
+	                        <div class="invalid-feedback">
+	                            {% for error in form.syptoms.errors %}
+	                                <span>{{ error }}</span>
+	                            {% endfor %}
+	                        </div>
+	                    {% else %}
+	                        {{ form.symptoms(rows="4",class="form-control form-control-lg") }}
+	                    {% endif %}
+	                	</div>
+	                	 <div class="form-group">
+	                    {{ form.diagnosis.label(class="form-control-label") }}
+	                    {% if form.diagnosis.errors %}
+	                        {{ form.diagnosis(rows="3",class="form-control form-control-lg is-invalid") }}
+	                        <div class="invalid-feedback">
+	                            {% for error in form.diagnosis.errors %}
+	                                <span>{{ error }}</span>
+	                            {% endfor %}
+	                        </div>
+	                    {% else %}
+	                        {{ form.diagnosis(rows="3",class="form-control form-control-lg") }}
+	                    {% endif %}
+						</div>
+				    <b>Medicines</b>
+					<br><br>
+					<div class="form-group">
+	                    {{ form.rows.label(class="form-control-label") }}
+	                    {% if form.rows.errors %}
+	                        {{ form.rows(rows="4",class="form-control form-control-lg is-invalid") }}
+	                        <div class="invalid-feedback">
+	                            {% for error in form.syptoms.errors %}
+	                                <span>{{ error }}</span>
+	                            {% endfor %}
+	                        </div>
+	                    {% else %}
+	                        {{ form.rows(rows="4",class="form-control form-control-lg") }}
+	                    {% endif %}
+	                	</div><br>
+					  	<table id="extra-table">
+						    <tr>
+						        <th class="col-md-4 name">Name</th>
+						        <th class="col-md-4 days">Days</th>
+						        <th class="col-md-4 times">Times</th>
+						        <th class="col-md-4 dose">Dose</th>
+						        <th class="col-md-4 remarks">Remarks</th>
+						        <th class="col-md-4 remove"></th>
+						    </tr>
+						    <button type="button" class="btn btn-info" onclick="addExtraRow()">
+						        Add Row <i class="fas fa-plus"></i>
+						    </button><br>
+    						{% for extra in form.extras %}
+						    <tr >
+						        <td>
+						        	{% if form.name.errors %}
+	                        		{{ form.name(class="form-control form-control-lg is-invalid") }}
+			                        <div class="invalid-feedback">
+			                            {% for error in form.name.errors %}
+			                                <span>{{ error }}</span>
+			                            {% endfor %}
+			                        </div>
+	                    			{% else %}
+	                        		{{ form.name(class="form-control form-control-lg") }}
+	                    			{% endif %}</td>
+
+						        <td>{% if form.days.errors %}
+	                        		{{ form.days(class="form-control form-control-lg is-invalid") }}
+			                        <div class="invalid-feedback">
+			                            {% for error in form.days.errors %}
+			                                <span>{{ error }}</span>
+			                            {% endfor %}
+			                        </div>
+	                    			{% else %}
+	                        		{{ form.days(class="form-control form-control-lg") }}
+	                    			{% endif %}</td>
+
+						        <td>{% if form.times.errors %}
+	                        		{{ form.times(class="form-control form-control-lg is-invalid") }}
+			                        <div class="invalid-feedback">
+			                            {% for error in form.times.errors %}
+			                                <span>{{ error }}</span>
+			                            {% endfor %}
+			                        </div>
+	                    			{% else %}
+	                        		{{ form.times(class="form-control form-control-lg") }}
+	                    			{% endif %}</td>
+
+						        <td>{% if form.dose.errors %}
+	                        		{{ form.dose(class="form-control form-control-lg is-invalid") }}
+			                        <div class="invalid-feedback">
+			                            {% for error in form.dose.errors %}
+			                                <span>{{ error }}</span>
+			                            {% endfor %}
+			                        </div>
+	                    			{% else %}
+	                        		{{ form.dose(class="form-control form-control-lg") }}
+	                    			{% endif %}</td>
+
+						        <td>{% if form.remarks.errors %}
+	                        		{{ form.remarks(class="form-control form-control-lg is-invalid") }}
+			                        <div class="invalid-feedback">
+			                            {% for error in form.remarks.errors %}
+			                                <span>{{ error }}</span>
+			                            {% endfor %}
+			                        </div>
+	                    			{% else %}
+	                        		{{ form.remarks(class="form-control form-control-lg") }}
+	                    			{% endif %}</td>
+						        <td>
+						            <button type="button" class="btn btn-danger"
+						                    onclick="removeExtraRow(this)">
+						                Remove <i class="fas fa-minus"></i>
+						            </button>
+						        </td>
+						    </tr>
+						    {% endfor %}
+						</table>
+						<br>
+				  	<div class="form-group center">
+	               			 {{ form.submit(class="btn btn-outline-info") }}
+	            	</div>
+			</form>
+	</div>
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+    	// Function to add a row to the Extra Properties Table
+function addExtraRow() {
+   let table = document.getElementById("extra-table");
+    let length = table.rows.length;
+    let row = table.insertRow(-1);
+    let nameCell = row.insertCell(0);
+    let daysCell = row.insertCell(1);
+    let timesCell= row.insertCell(2);
+    let doseCell= row.insertCell(3);
+    let remarksCell= row.insertCell(4);
+    let buttonCell= row.insertCell(5);
+    nameCell.innerHTML = "<span class=\"bmd-form-group is-filled\"><input class=\"form-control\" id=\"extras-" + length + "-name\" name=\"extras-" + length + "-name\" required=\"\" type=\"text\" value=\"\"></span>";
+
+    daysCell.innerHTML = "<span class=\"bmd-form-group is-filled\"><input class=\"form-control\" id=\"extras-" + length + "-days\" name=\"extras-" + length + "-days\" required=\"\" type=\"text\" value=\"\"></span>";
+
+    timesCell.innerHTML = "<span class=\"bmd-form-group is-filled\"><input class=\"form-control\" id=\"extras-" + length + "-times\" name=\"extras-" + length + "-times\" required=\"\" type=\"text\" value=\"\"></span>";
+
+    doseCell.innerHTML = "<span class=\"bmd-form-group is-filled\"><input class=\"form-control\" id=\"extras-" + length + "-remarks\" name=\"extras-" + length + "-dose\" required=\"\" type=\"text\" value=\"\"></span>";
+    remarksCell.innerHTML= "<textarea class=\"form-control\" id=\"extras-" + length + "-remarks\" name=\"extras-" + length + "-remarks\"  required=\"\" type=\"textarea\" value=\"\" rows=\"1\">";
+    buttonCell.innerHTML = "<button type=\"button\" class=\"btn btn-danger\" onclick=\"removeExtraRow(this)\"> Remove <i class=\"fas fa-minus\"></i> </button>";
+}
+// Function to remove a row from the extra properties table
+function removeExtraRow(x) {
+    let i = x.parentNode.parentNode["rowIndex"];
+    let table = document.getElementById("extra-table");
+    table.deleteRow(i);
+}
+</script>
+</body>
+</html>

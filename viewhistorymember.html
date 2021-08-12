@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Panacea Dispensary | History</title>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='commoncss.css')}}">
+	<link href="https://fonts.googleapis.com/css2?family=Gotu&display=swap" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="{{url_for('static',filename='stethlogo.png')}}">
+		<style>
+			body{
+				background-image:linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),url("{{url_for('static',filename='viewhistorymember.jpg')}}");
+			}
+			h1{
+				font-size: 18px;
+			}
+			table, td, th {
+  border: 1px solid black;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+
+		</style>
+</head>
+<body>
+	<header>
+			<div class="logo">
+				<a href="{{url_for('logout')}}"><img src="{{url_for('static',filename='stethlogo.png')}}"></a>	
+			</div>
+			<ul>
+				<li><a href="{{url_for('memberhome')}}">Member Home</a></li>
+				<li><a href="{{url_for('logout')}}">Logout</a></li>
+			</ul>
+	</header><br>
+	<div class="nav">
+			<div class=center><h1>PANACEA DISPENSARY</h1></div>
+			<h2>History:</h2><br>
+			<div class=center>
+				<div style="overflow-x:auto;">
+				{% for user in users1 %}
+				<div>
+					<table>
+						<tr>
+							<th>Date</th>
+							<th>Doctor Name</th>
+							<th>Symptoms</th>
+							<th>Diagnosis</th>
+						</tr>
+						<tr>
+							<td>{{ user.date }}</td>
+							<td>{{user.doctors.firstname}} {{user.doctors.lastname}}</td>
+							<td>{{ user.symptoms }}</td>
+							<td>{{ user.diagnosis }}</td>
+						</tr>
+					</table>
+					<br>
+					<table>
+						<tr>
+							<th>Name</th>
+							<th>Times</th>
+							<th>Dose</th>
+							<th>Days</th>
+							<th>Remarks</th>
+						</tr>
+						{%for user2 in users2%}
+						{% if user2.link==user.id %}
+						<tr>
+							<td>{{user2.name}}</td>
+							<td>{{user2.times}}</td>
+							<td>{{user2.dose}}</td>
+							<td>{{user2.days}}</td>
+							<td>{{user2.remarks}}</td>
+						</tr>
+						{% endif %}
+						{%endfor%}<hr>
+				</table><br><hr style="height:2px;border-width:0;color:gray;background-color:black"><br>
+				</div>
+				{%endfor%}
+			<br>
+			</div></div>
+	</div>
+</body>
+</html>

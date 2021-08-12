@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Panacea Dispensary | Help</title>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='commoncss.css')}}">
+	<link href="https://fonts.googleapis.com/css2?family=Gotu&display=swap" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="{{url_for('static',filename='stethlogo.png')}}">
+	<style>
+			body{
+				background-image:linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),url("{{url_for('static',filename='help.jpg')}}");
+			}
+			h1{
+				font-size:18px;
+			}
+		</style>
+</head>
+<body>
+	<header>
+			<div class="logo">
+				<a href="{{url_for('homepage')}}"><img src="{{url_for('static',filename='stethlogo.png')}}"></a>	
+			</div>
+			<ul>
+				<li><a href="{{url_for('homepage')}}">Home</a></li>
+			</ul>
+		</div>
+	</header>
+	<div class=nav>
+		<h1><b>This Website is aimed at recording the medical history of all the colony members in a systematic way.Enter your User Id and password to access your profile and view your history if you are a colony member.If not registered please visit the dispensary registration desk to get Id and password and to avail all the facilities provided. New doctors can also sign up at the registration desk.<b></h1>
+	</div>
+</body>
+</html>

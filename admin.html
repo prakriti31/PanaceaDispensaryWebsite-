@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<title>Panacea Dispensary | Admin Home</title>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='commoncss.css')}}">
+	<link href="https://fonts.googleapis.com/css2?family=Gotu&display=swap" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="{{url_for('static',filename='stethlogo.png')}}">
+	<style>
+		body{
+		background-image:linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),url({{url_for('static',filename='medlogo.jpg')}});
+		}
+	</style>
+</head>
+<body>
+	<header>
+			<div class="logo">
+				<a href="{{url_for('logout')}}"><img src="{{url_for('static',filename='stethlogo.png')}}"></a>	
+			</div>
+			<ul>
+				<li><a href="{{url_for('logout')}}">Logout</a></li>
+			</ul>
+	</header><br>
+	<div class="alert alert-danger">
+	{% with messages=get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category,message in messages %}
+                    <div class='alert alert-{{ category }}'>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}</div>
+	<div class=nav>
+		<div class=center><h1>PANACEA DISPENSARY</h1></div>
+			<ul>
+				<li class=navigate><a href="{{url_for('doctorsignup')}}">Doctor Sign Up</a></li>
+				<li class=navigate><a href="{{url_for('employeesignup')}}">Employee Sign Up</a></li>
+				<li class=navigate><a href="{{url_for('newmemberemployee')}}">New Member</a></li>
+				<li class=navigate><a href="{{url_for('modifydetailsid')}}">Modify Records</a></li>
+			</ul>
+		</div>
+</body>
+</html>

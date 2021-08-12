@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Panacea Dispensary | Home</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='commoncss.css')}}">
+		<link href="https://fonts.googleapis.com/css2?family=Gotu&display=swap" rel="stylesheet">
+		<link rel="shortcut icon" type="image/png" href="{{url_for('static',filename='stethlogo.png')}}">
+		<style>
+			body{
+				 background-image:linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),url("{{url_for('static',filename='homepage.jpg')}}");
+			}
+
+			.btn-outline-info {
+				border-width: 1.4px;
+				background-color:white;
+			}
+			.btn {
+				
+				font-weight: 700;
+			}
+			.image img{
+				float: left;
+				height: 400px;
+				width:400px;
+					}
+			.image1 img{
+				float: right;
+				height: 200px;
+				width:200px;
+					}
+
+			.neons{
+  margin-top: 20px;
+  text-align: center;
+}
+.neons h1{
+	font-size: 30px;
+  font-weight: bold;
+  -webkit-animation: glow 2s ease-in-out infinite alternate;
+  -moz-animation: glow 2s ease-in-out infinite alternate;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+  from {
+    color: black;
+    /text-shadow: 0 0 10px #00fff2, 0 0 20px #00fff2, 0 0 30px #00fff2, 0 0 40px #00fff2, 0 0 50px #00fff2, 0 0 60px #00fff2, 0 0 70px #00fff2, 0 0 90px #00fff2;/
+    text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+  }
+  to {
+    color: blue;
+    text-shadow: 0 0 20px #00fff2, 0 0 30px #00fff2, 0 0 40px #00fff2, 0 0 50px #00fff2, 0 0 60px #00fff2, 0 0 70px #00fff2, 0 0 80px #00fff2, 0 1 90px #00fff2;
+  }
+}
+
+		</style>
+	</head>
+	<body>
+		<header>
+			<div class="logo">
+				<a href="{{url_for('homepage')}}"><img src="{{url_for('static',filename='stethlogo.png')}}"></a>	
+			</div>
+			<ul>
+				<li><a href="{{url_for('help')}}">Help</a></li>
+			</ul>
+		</header>
+		<br>
+		{% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category , message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div class="image">
+        	<img src="./static/doc.gif">
+        </div>
+        <div class="image1">
+        	<img src="./static/med.gif">
+        </div>
+		<div class=nav>
+			<div class="container">
+   <div class="row">
+      <div class="neons col-12">
+         <h1><em>PANACEA DISPENSARY</em></h1>
+      </div>
+   </div>
+</div>
+			
+						<form action="" method="POST">
+				     	{{ form.hidden_tag() }}
+				     	<div class="form-group">
+	                    {{ form.userid.label(class="form-control-label") }}
+	                    {% if form.userid.errors %}
+	                        {{ form.userid(class="form-control form-control-lg is-invalid") }}
+	                        <div class="invalid-feedback">
+	                            {% for error in form.userid.errors %}
+	                                <span>{{ error }}</span>
+	                            {% endfor %}
+	                        </div>
+	                    {% else %}
+	                        {{ form.userid(class="form-control form-control-lg") }}
+	                    {% endif %}
+	                	</div>
+	                	 <div class="form-group">
+	                    {{ form.password.label(class="form-control-label") }}
+	                    {% if form.password.errors %}
+	                        {{ form.password(class="form-control form-control-lg is-invalid") }}
+	                        <div class="invalid-feedback">
+	                            {% for error in form.password.errors %}
+	                                <span>{{ error }}</span>
+	                            {% endfor %}
+	                        </div>
+	                    {% else %}
+	                        {{ form.password(class="form-control form-control-lg") }}
+	                    {% endif %}
+	                	</div>
+
+	                	<div class="form-group center button">
+	               			 {{ form.submit(class="btn btn-outline-info") }}
+	            		</div>
+						</form>
+		</div>
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+	</body>
+</html>
